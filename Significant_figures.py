@@ -16,7 +16,10 @@ class Significant_figures:
         self.number = int(in_float * ( 10 ** self.point_len ))
         self.nlen = len(repr(self.number))
 
-#    def __add__(self, other):
+    def __add__(self, other):
+        ret = Significant_figures("0")
+        
+        
 
     def __mul__(self, other):
         ret = Significant_figures("0")

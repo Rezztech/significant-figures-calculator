@@ -104,6 +104,11 @@ class Significant_figures:
         ret.estimated = max(self.estimated * other.nlen, other.estimated * self.nlen)
         return ret
         
+#    def __truediv__(self, other):
+#        ret = Significant_figures("0")
+#        other = 1 / other
+#        ret = self * other
+
     #對使用者
     def __str__(self):
         if self.sign:
@@ -123,6 +128,3 @@ class Significant_figures:
 # nlen 數字長度 (-小數點)
 # point_len 小數點位數
 # sign : 0:+ 1:-
-
-
-

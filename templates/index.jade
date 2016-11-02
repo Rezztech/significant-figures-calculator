@@ -1,0 +1,76 @@
+doctype html
+html
+    head
+        title Physic Experiment
+        meta(charset='utf-8')
+        link(
+            rel="stylesheet",
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u",
+            crossorigin="anonymous")
+        link(rel='stylesheet', href='index.css')
+        script(
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa",
+            crossorigin="anonymous")
+        script.
+            document.write(
+                '<script src="http://'
+                + (location.host || 'localhost').split(':')[0]
+                + ':35729/livereload.js?snipver=1"></'
+                + 'script>')
+    body
+        .container
+            .col-lg-1.col-md-1.col-sm-1
+                .row 打點編號
+                .row -
+                - for (var i=0; i<=40; i+=5)
+                    .row= '第 ' + i + ' 點'
+
+            .col-lg-1.col-md-1.col-sm-1
+                .row 時間
+                .row t (s)
+                - for (var i=0; i<=40; i+=5)
+                    .row 0.00
+
+            .col-lg-2.col-md-2.col-sm-2
+                .row 位置
+                .row x (cm)
+                - for (var i=0; i<=40; i+=5)
+                    .row 0.00
+
+            .col-lg-2.col-md-2.col-sm-2
+                .row 位移
+                .row.half-down Δx (cm)
+                - for (var i=0; i<=40; i+=5)
+                    .row 0.00
+
+            .col-lg-2.col-md-2.col-sm-2
+                .row 速度
+                .row.half-down.
+                    v =
+                    <table style='display:inline-table; vertical-align:middle'>
+                        <tr><td style='border-bottom:solid'>Δx</td></tr>
+                        <tr><td>Δt</td></tr>
+                    </table>
+                    (cm/s)
+                - for (var i=0; i<=40; i+=5)
+                    .row 0.00
+
+            .col-lg-2.col-md-2.col-sm-2
+                .row 速度變化量
+                .row Δv (cm/s)
+                - for (var i=0; i<=40; i+=5)
+                    .row 0.00
+
+            .col-lg-2.col-md-2.col-sm-2
+                .row 加速度
+                .row.
+                    a =
+                    <table style='display:inline-table; vertical-align:middle'>
+                        <tr><td style='border-bottom:solid'>Δv</td></tr>
+                        <tr><td>Δt</td></tr>
+                    </table>
+                    (cm/s<sup>2</sup>)
+                - for (var i=0; i<=40; i+=5)
+                    .row 0.00

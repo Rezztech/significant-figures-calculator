@@ -1,0 +1,55 @@
+<!-- DO NOT modify index.html, please edit index.jade instead-->
+<!----><!DOCTYPE html>
+<html>
+  <head>
+    <title>POST Demo</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+          var bottomID = 3;
+          $("#add_button").click
+          (
+            function()
+            {
+              bottomID++;
+              $("#add_input_button").append('<input type="text" name="position[]" id="position[]"><br>');      
+              console.log("Add a Line");
+            }
+          );
+          $("#del_button").click
+          (
+            function()
+            {
+                if (bottomID > 3)
+                {
+                    bottomID--;
+                    $('input[name="position[]"]')[bottomID].remove()
+                    console.log("Del a Line");
+                }
+                else
+                {
+                    console.log("Line is <= 3");
+                }
+            }
+          );
+        });
+    </script>
+  </head>
+  <body>
+      <form name="position_form" method="POST" action="">
+      {% csrf_token %}
+          <input type="button" id="add_button" name="add_button" value="Add Line">
+          <input type="button" id="del_button" name="del_button" value="Del Line">
+          <input type="text" name="time" id="time"><br>
+          <div id="add_input_button"></div>
+                <input type="text" name="position" id="position0"><br>
+                <input type="text" name="position" id="position1"><br>
+                <input type="text" name="position" id="position2"><br>
+          <input type="submit" name="submit" value="Submit">
+      </form>
+  </body>
+</html>

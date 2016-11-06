@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+#from significant_figures_calculator.views import post_demo
+from significant_figures_calculator.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    #url(r'^post/$', post_demo),
+    #url(r'^add/$', add),
+    #url(r'^sub/$', sub),
+    #url(r'^mul/$', mul),
 ]

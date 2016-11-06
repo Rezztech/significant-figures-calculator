@@ -1,0 +1,17 @@
+body {
+	font-size: 14pt;
+}
+.container {
+	border-collapse: collapse;
+}
+.row {
+	border: 1px solid black;
+	height: 20mm;
+	text-align: center;
+}
+.row:before {
+	vertical-align: middle;
+}
+.half-down {
+	margin-bottom: 10mm;
+}

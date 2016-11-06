@@ -1,0 +1,144 @@
+
+<!-- DO NOT modify index.html, please edit index.jade instead-->
+<!----><!DOCTYPE html>
+<html>
+  <head>
+    <title>Physic Experiment</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/acceleration.css">
+    <script src="/static/acceleration.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--<script>-->
+      <!--document.write(-->
+          <!--'<script src="http://'-->
+          <!--+ (location.host || 'localhost').split(':')[0]-->
+          <!--+ ':35729/livereload.js?snipver=1"></'-->
+          <!--+ 'script>')-->
+    <!--</script>-->
+     <script>
+        var position = [
+            {% for i in positionJ %}
+            {{ i }},
+            {% endfor %}
+        ]
+        var displacement = [
+            {% for i in displacementJ %}
+            {{ i }},
+            {% endfor %}
+        ]
+        var velocity = [
+            {% for i in velocityJ %}
+            {{ i }},
+            {% endfor %}
+        ]
+        var change_velocity = [
+            {% for i in change_velocityJ %}
+            {{ i }},
+            {% endfor %}
+        ]
+        var acceleration = [
+            {% for i in accelerationJ %}
+            {{ i }},
+            {% endfor %}
+        ]
+        var average_acceleration = {{ average_accelerationJ }}
+        $(document).ready(function(){
+            for(i = 0;i < {{ quantity }};i++)
+            {
+                $("#add_dot").append('<div class="row dot"></div>');
+                $("#add_time").append('<div class="row time"></div>');
+                $("#add_position").append('<div class="row position"></div>');
+                $("#add_displacement").append('<div class="row displacement"></div>');
+                $("#add_velocity").append('<div class="row velocity"></div>');
+                $("#add_change_velocity").append('<div class="row change_velocity"></div>');
+                $("#add_acceleration").append('<div class="row acceleration"></div>');
+            }
+            for(i = 0;i < position.length;i++)
+            {
+                $(".position").eq(i).append(print_num_html(position[i]));
+                $(".dot").eq(i).append("第 " + String(i * {{ dot }}) + " 點");
+                $(".time").eq(i).append(String((i * {{ dot }} / 60).toFixed(2)));
+            }
+            for(i = 0;i < displacement.length;i++)
+            {
+                $(".displacement").eq(i).append(print_num_html(displacement[i]));
+                $(".velocity").eq(i).append(print_num_html(velocity[i]));
+            }
+            for(i = 0;i < acceleration.length;i++)
+            {
+                $(".change_velocity").eq(i).append(print_num_html(change_velocity[i]));
+                $(".acceleration").eq(i).append(print_num_html(acceleration[i]));
+            }
+
+            $("#average_acceleration").append(print_num_html(average_acceleration));
+        });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-lg-1 col-md-1 col-sm-1">
+        <div class="row">打點編號</div>
+        <div class="row">-</div>
+        <div class="row dot"></div>
+        <div class="row dot"></div>
+        <div id="add_dot"></div>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-1">
+        <div class="row">時間</div>
+        <div class="row">t (s)</div>
+        <div class="row time"></div>
+        <div class="row time"></div>
+        <div id="add_time"></div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">位置</div>
+        <div class="row">x (cm)</div>
+        <div class="row position"></div>
+        <div class="row position"></div>
+        <div id="add_position"></div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">位移</div>
+        <div class="row half-down">Δx (cm)</div>
+        <div class="row displacement"></div>
+        <div id="add_displacement"></div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">速度</div>
+        <div class="row half-down">
+          v =
+          <table style='display:inline-table; vertical-align:middle'>
+              <tr><td style='border-bottom:solid'>Δx</td></tr>
+              <tr><td>Δt</td></tr>
+          </table>
+          (cm/s)
+        </div>
+        <div class="row velocity"></div>
+        <div id="add_velocity"></div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">速度變化量</div>
+        <div class="row all-down">Δv (cm/s)</div>
+        <!--<div class="row change_velocity">0.00</div>-->
+        <div id="add_change_velocity"></div>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="row">加速度</div>
+        <div class="row all-down">
+          a =
+          <table style='display:inline-table; vertical-align:middle'>
+              <tr><td style='border-bottom:solid'>Δv</td></tr>
+              <tr><td>Δt</td></tr>
+          </table>
+          (cm/s<sup>2</sup>)
+        </div>
+        <!--<div class="row acceleration">0.00</div>-->
+        <div id="add_acceleration"></div>
+      </div>
+    </div>
+    <div id="average_acceleration"></div>
+  </body>
+</html>

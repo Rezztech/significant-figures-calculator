@@ -58,9 +58,13 @@ def acceleration(request):
         for i in change_velocityO:          
             accelerationO.append(i * sub_time_reciprocalO)
             accelerationJ.append(export_in_javascript_object_form(accelerationO[-1]))
-        #average_accelerationO = sum(i for i in accelerationO) * Significant_figures(str(1/len(accelerationO)))
-        #average_accelerationJ = export_in_javascript_object_form(average_accelerationO)
-        return render(request, 'acceleration_input.html', locals())
+        quantity = len(accelerationJ)
+        sum_accelerationO = Significant_figures("0.00")
+        for i in accelerationO:
+            sum_accelerationO = sum_accelerationO + i
+        average_accelerationO = sum_accelerationO * Significant_figures(str(1/len(accelerationO)))
+        average_accelerationJ = export_in_javascript_object_form(average_accelerationO)
+        return render(request, 'acceleration_output.html', locals())
     else:
         return render(request, 'acceleration_input.html', locals())
 

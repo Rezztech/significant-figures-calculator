@@ -26,3 +26,42 @@ def add(request):
         return render(request, 'add.html', locals())
     else:
         return render(request, 'add.html', locals())
+
+#object尾 O 是指Significant_figures物件
+def acceleration(request):
+    if request.POST:
+        dot = request.POST.get('dot', '')
+        sub_time_reciprocalO = Significant_figures(str(60/int(dot)))
+        position = request.POST.getlist('position')
+        positionO = []                      #位置
+        positionJ = []                      
+        for i in position:
+            positionO.append(Significant_figures(i))
+            positionJ.append(export_in_javascript_object_form(positionO[-1]))
+        displacementO = []                  #位移
+        displacementJ = []                  
+        for i in range(len(position) - 1):
+            displacementO.append(positionO[i + 1] - positionO[i])
+            displacementJ.append(export_in_javascript_object_form(displacementO[-1]))
+        velocityO = []                      #速度
+        velocityJ = []                      
+        for i in displacementO:
+            velocityO.append(i * sub_time_reciprocalO)
+            velocityJ.append(export_in_javascript_object_form(velocityO[-1]))
+        change_velocityO = []               #速度變化量
+        change_velocityJ = []
+        for i in range(len(velocityO) - 1):
+            change_velocityO.append(velocityO[i + 1] - velocityO[i])
+            change_velocityJ.append(export_in_javascript_object_form(change_velocityO[-1]))
+        accelerationO = []                  #加速度
+        accelerationJ = []
+        for i in change_velocityO:          
+            accelerationO.append(i * sub_time_reciprocalO)
+            accelerationJ.append(export_in_javascript_object_form(accelerationO[-1]))
+        #average_accelerationO = sum(i for i in accelerationO) * Significant_figures(str(1/len(accelerationO)))
+        #average_accelerationJ = export_in_javascript_object_form(average_accelerationO)
+        return render(request, 'acceleration_input.html', locals())
+    else:
+        return render(request, 'acceleration_input.html', locals())
+
+        

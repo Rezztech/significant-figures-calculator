@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^add/$', add),
     #url(r'^sub/$', sub),
     #url(r'^mul/$', mul),
+    url(r'^acceleration/$', acceleration),
 ]

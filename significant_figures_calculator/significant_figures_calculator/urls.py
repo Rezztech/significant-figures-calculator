@@ -21,7 +21,7 @@ from significant_figures_calculator.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^post/$', post_demo),
-    #url(r'^add/$', add),
+    url(r'^add/$', add),
     #url(r'^sub/$', sub),
     #url(r'^mul/$', mul),
 ]

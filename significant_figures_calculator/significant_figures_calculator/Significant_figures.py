@@ -3,6 +3,9 @@
 # 
 # 
 #           Wildfoot 2016 10 31
+def export_in_javascript_object_form(self):
+    ret = "number : " + str(self.number) + ", point_len : " + str(self.point_len) + ", estimated : " + str(self.estimated)
+    return ret
 
 def _real_add(self, other):
     ret = Significant_figures("0")

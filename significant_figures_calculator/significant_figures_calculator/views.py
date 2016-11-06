@@ -13,5 +13,16 @@ from django import template
 #    else:
 #        return render(request,'post.html',locals())
 
-#def add(request):
-    
+def add(request):
+    if request.POST:
+        augend = request.POST.get('augend', '')
+        addend = request.POST.get('addend', '')
+        augendO = Significant_figures(augend)
+        addendO = Significant_figures(addend)
+        answerO = augendO + addendO
+        augend = export_in_javascript_object_form(augendO)
+        addend = export_in_javascript_object_form(addendO)
+        answer = export_in_javascript_object_form(answerO)
+        return render(request, 'add.html', locals())
+    else:
+        return render(request, 'add.html', locals())
